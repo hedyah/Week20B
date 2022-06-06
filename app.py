@@ -40,7 +40,7 @@ def run_query(statement, args=None):
         if statement.startswith("SELECT"):
             cursor.execute(statement,args)
             result = cursor.fetchall()
-            print("total of {} users" .format(cursor.rowcount))
+            #print("total of {} users" .format(cursor.rowcount))
             
             return result
             
@@ -108,14 +108,17 @@ while True:
                 
             if selected == '1':
                 new_post = input("type your exploits here: ")
-                run_query("INSERT INTO exploits (content) VALUES(?)",[new_post])
+                run_query("INSERT INTO exploits(content, user_id) VALUES(?,?)",[new_post, user_id])
                 print ("posted exploits sucesssfully!")
+                
             elif selected == '2':
-                see_post = run_query("SELECT * FROM exploits WHERE id=?", [user_id])
+                see_post = run_query("SELECT * FROM exploits WHERE user_id=?", [user_id])
                 print("here are all your exploits: ")
+                print(result)
             elif selected == '3':
-                see_users = run_query("SELECT * FROM exploits (content)")
+                see_users = run_query("SELECT * FROM exploits")
                 print("Here are other exploits: ")
+                print(result)
 
             elif selected == '4':
                 exit_app = input("would you like to exit ? (yes/no): ")
