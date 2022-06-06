@@ -40,7 +40,7 @@ def run_query(statement, args=None):
         if statement.startswith("SELECT"):
             cursor.execute(statement,args)
             result = cursor.fetchall()
-            #print("total of {} users" .format(cursor.rowcount))
+            print("total of {} users" .format(cursor.rowcount))
             
             return result
             
